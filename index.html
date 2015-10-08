@@ -22,17 +22,19 @@
   <body>
     <div class= "container">
       <div class="row">
-        <div class="col-md-2 visit">  
-          <p> users</p>
+        <div class="col-xs-2 visit">  
+          <p> Channels </p>
         </div>
         
-        <div class="col-md-18">
+        <div class="col-xs-18">
     <div id='messagesDiv' class="messages"></div>
     
     <input type='text' id='messageInput' class="inputBox" placeholder='Message'>
   </div>
 </div>
 </div>
+
+<div><a href="javascript:logout();">Logout</a></div>
 
 <div class="modal fade" id="auth-modal">
   <div class="modal-dialog">
@@ -76,7 +78,7 @@
       function authDataCallback(authData) {
         if (authData) {
           console.log("User " + authData.uid + " is logged in with " + authData.provider);
-          var userId = AuthData.id;
+          var userId = authData.id;
           name = authData[authData.provider].displayName;
         } else {
           console.log("User is logged out");
@@ -92,11 +94,14 @@ myDataRef.onAuth(authDataCallback);
         if (e.keyCode == 13) {
           if(!name){
             authModal.modal('show');
-          }
-          // var name = $('#nameInput').val();
+          } else { // Don't submit anything unlesswe know users name!
+            // var name = $('#nameInput').val();
           var text = $('#messageInput').val();
           myDataRef.push({name: name, text: text});
           $('#messageInput').val('');
+          }
+
+          
         }
       });
       myDataRef.on('child_added', function(snapshot) {
@@ -107,6 +112,25 @@ myDataRef.onAuth(authDataCallback);
         $('<div/>').text(text).prepend($('<em/>').text(name+': ')).appendTo($('#messagesDiv'));
         $('#messagesDiv')[0].scrollTop = $('#messagesDiv')[0].scrollHeight;
       };
+      function login(provider){
+        console.log(provider);
+        authModal.modal('hide');
+        myDataRef.authWithOAuthPopup(provider, function(error, authData) {
+          if (error) {
+          console.log("Login Failed!", error);
+          } else {
+          console.log("Authenticated successfully with payload:", authData);
+            }
+        });
+       }
+
+       function logout(){
+          console.log("logging Out")
+          myDataRef.unauth();
+          location.reload();
+
+       }
+
     </script>
   </body>
 </html>
