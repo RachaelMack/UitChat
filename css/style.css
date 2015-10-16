@@ -1,22 +1,50 @@
+
 .visit{
-	background-color: #7b68ee;
-	height: 435px;
-	color: white;
+	background-color: #c2eee2;
+	height: 400px;
+	color: #72d8bb;
+	padding-top: 7px;
+	border: 2px solid;
+    border-radius: 1em;
+    border-color: white;
+    text-align: center;
+
 }
 
 .inputBox{
 	width: 100%;
-	Length:30%;
+	Length:40%;
+	padding:3px;
+	margin-top: 10px;
+
 }
 .messages{
 	height:390px;
+	padding-top: 5px;
+	padding-left: 20px;
 }
 
-.modal {
-    position: relative !important;
-    margin-left: 30% !important;
-    right-padding: 100px;
-    margin-top: -400px !important;
-    background-color: transparent;
-    width: 50% !important;
+.btn-custom  {
+  background-color: hsl(163, 57%, 65%) !important;
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#c2eee2", endColorstr="#72d8bb");
+  background-image: -khtml-gradient(linear, left top, left bottom, from(#c2eee2), to(#72d8bb));
+  background-image: -moz-linear-gradient(top, #c2eee2, #72d8bb);
+  background-image: -ms-linear-gradient(top, #c2eee2, #72d8bb);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #c2eee2), color-stop(100%, #72d8bb));
+  background-image: -webkit-linear-gradient(top, #c2eee2, #72d8bb);
+  background-image: -o-linear-gradient(top, #c2eee2, #72d8bb);
+  background-image: linear-gradient(#c2eee2, #72d8bb);
+  border-color: #72d8bb #72d8bb hsl(163, 57%, 60%);
+  color: #333 !important;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.33);
+  -webkit-font-smoothing: antialiased;
+  float:right;
+  margin-top: 15px;
+  margin-left: 5px;
 }
+
+  .social{
+  	text-align: center;
+
+  }
