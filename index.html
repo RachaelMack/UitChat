@@ -30,12 +30,12 @@
   <div class= "container">
   <div class="row">
       <img src="images/abundancelogo.png" alt="Abundance Logo" height="93" width="370" padding="10px">
-      <button type="button" class="btn btn-custom"><a href="javascript:login();">Logout</a></button>
-      <button type="button" class="btn btn-custom"><a href="javascript:logout();">Login</a></button>
+      <button type="button" class="btn btn-custom"><a href="javascript:logout();">Logout</a></button>
+      <button type="button" class="btn btn-custom"><a href="javascript:loginButton();">Login</a></button>
         
   </div>
-  <div class="row">
-     <div class="col-sm-3 visit">  
+  <div class="row main-container">
+     <div class="col-sm-2 visit">  
     
       <ul class="nav nav-pills nav-stacked">
         <li role="presentation" class="active"><a href="index.html">Looking to Buy</a></li>
@@ -43,28 +43,25 @@
     </ul>
         </div>
         
-        <div class="col-sm-9">
+        <div class="col-sm-9 chat-main">
 
         <input type='text' id='messageInput' class="inputBox" placeholder='Type Your Message Here'>
     
           <div id='messagesDiv' class="messages">
+
+            <div class="col-sm-1">
+            </div>
           </div>
         </div>
     </div>
-    <div class="row">
-      <div class="col-sm-4 social">  
-        <a href="https://www.facebook.com/rachaelmackeigan" target="_blank">Visit us on Facebook</a>
-      </div>
-        <div class="col-sm-4 social"> 
-          <a href="https://twitter.com/RachaelMack"target="_blank">Visit us on Twitter</a>
-          </div>
-          <div class="col-sm-4 social"> 
-          <a href="https://www.youtube.com/channel/UCkRj_B2NoCFdER4KL0mGRNA" target="_blank">Visit us on YouTube</a>
+    <div class="row bottom-social">
+      <div class="col-sm-2 social">
+        <a href="http://twitter.com" target="_Blank"><i class="fa fa-twitter-square fa-3x"></i></a>
+        <a href="http://www.yoututbe.com" target="_Blank"><i class="fa fa-youtube-square fa-3x"></i></a>
+        <a href="http://www.facebook.com" target="_Blank"><i class="fa fa-facebook-square fa-3x"></i></a>
+
       </div>
     </div>
-</div>
-
-
 
 <div class="modal fade" id="auth-modal">
   <div class="modal-dialog">
@@ -142,6 +139,12 @@ myDataRef.onAuth(authDataCallback);
         $('<div/>').text(text).prepend($('<em/>').text(name+': ')).appendTo($('#messagesDiv'));
         $('#messagesDiv')[0].scrollTop = $('#messagesDiv')[0].scrollHeight;
       };
+
+      function loginButton(){
+        console.log("loginButton pressed");
+        authModal.modal('show');
+
+      }
       function login(provider){
         console.log(provider);
         authModal.modal('hide');
