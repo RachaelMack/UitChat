@@ -1,76 +1,76 @@
 <!doctype html>
 <html>
-  <head>
-    <!--Firebase -->
-    <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
-    <!-- JQUERY -->
-    <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+<head>
+  <!--Firebase -->
+  <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
+  <!-- JQUERY -->
+  <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    
-    <!-- BOOTSTRAP -->
-    <!-- Latest compiled and minified CSS -->
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+  <!-- BOOTSTRAP -->
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
 
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 
-    <!-- CSS -->
-    <link rel='stylesheet' type='text/css' href='/css/style.css' >
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+  <!-- CSS -->
+  <link rel='stylesheet' type='text/css' href='/css/style.css' >
 
 
   
   
-  </head>
-  <body>
+</head>
+<body>
   <div class= "container">
-  <div class="row">
+    <div class="row">
       <img src="images/abundancelogo.png" alt="Abundance Logo" height="93" width="370" padding="10px">
       <button type="button" class="btn btn-custom"><a href="javascript:logout();">Logout</a></button>
       <button type="button" class="btn btn-custom"><a href="javascript:loginButton();">Login</a></button>
-        
-  </div>
-  <div class="row main-container">
+
+    </div>
+    <div class="row main-container">
      <div class="col-sm-2 visit">  
-    
+
       <ul class="nav nav-pills nav-stacked">
-        <li role="presentation" class="active"><a href="index.html">Looking to Buy</a></li>
-        <li role="presentation"><a href="sell.html">Looking to Sell</a></li>
-    </ul>
-        </div>
-        
-        <div class="col-sm-9 chat-main">
-
-        <input type='text' id='messageInput' class="inputBox" placeholder='Type Your Message Here'>
-    
-          <div id='messagesDiv' class="messages">
-
-            <div class="col-sm-1">
-            </div>
-          </div>
-        </div>
-    </div>
-    <div class="row bottom-social">
-      <div class="col-sm-2 social">
-        <a href="http://twitter.com" target="_Blank"><i class="fa fa-twitter-square fa-3x"></i></a>
-        <a href="http://www.yoututbe.com" target="_Blank"><i class="fa fa-youtube-square fa-3x"></i></a>
-        <a href="http://www.facebook.com" target="_Blank"><i class="fa fa-facebook-square fa-3x"></i></a>
-
-      </div>
+        <li id= "buy" role="buy" class="active"><a href="javascript:buy();">Looking to Buy</a></li>
+        <li id= "sell" role="sell" class="inactive"><a href="javascript:sell();">Looking to Sell</a></li>
+      </ul>
     </div>
 
-<div class="modal fade" id="auth-modal">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title text-center">Login</h4>
+    <div class="col-sm-9 chat-main">
+
+      <input type='text' id='messageInput' class="inputBox" placeholder='Type Your Message Here'>
+
+      <div id='messagesDiv' class="messages">
+
+        <div class="col-sm-1">
+        </div>
       </div>
-      <div class="modal-body text-center">
+    </div>
+  </div>
+  <div class="row bottom-social">
+    <div class="col-sm-2 social">
+      <a href="http://twitter.com" target="_Blank"><i class="fa fa-twitter-square fa-3x"></i></a>
+      <a href="http://www.yoututbe.com" target="_Blank"><i class="fa fa-youtube-square fa-3x"></i></a>
+      <a href="http://www.facebook.com" target="_Blank"><i class="fa fa-facebook-square fa-3x"></i></a>
+
+    </div>
+  </div>
+
+  <div class="modal fade" id="auth-modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title text-center">Login</h4>
+        </div>
+        <div class="modal-body text-center">
           <div class="row">
             <div class="col-sm-3"></div>
             <div class="col-sm-3">
@@ -86,17 +86,18 @@
                 <i id="facebook-signin-btn" class="fa fa-facebook-square  fa-5x"></i>
                 <p>Facebook</p></a>
 
+              </div>
             </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+          </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+      </div><!-- /.modal -->
 
-    <script>
+      <script>
+      var channel ='buy';
       var myDataRef = new Firebase('https://abundance.firebaseio.com/');
       var name=""; 
       var authModal= $('#auth-modal').modal({show: false }) ; //we don't want the modal to show immediately
@@ -117,53 +118,72 @@
 myDataRef.onAuth(authDataCallback);
 
 
-      $('#messageInput').keypress(function (e) {
-        if (e.keyCode == 13) {
-          if(!name){
-            authModal.modal('show');
+$('#messageInput').keypress(function (e) {
+  if (e.keyCode == 13) {
+    if(!name){
+      authModal.modal('show');
           } else { // Don't submit anything unlesswe know users name!
             // var name = $('#nameInput').val();
-          var text = $('#messageInput').val();
-          myDataRef.push({name: name, text: text});
-          $('#messageInput').val('');
+            var text = $('#messageInput').val();
+            myDataRef.child('channel/' + channel).push({name: name, text: text});
+            $('#messageInput').val('');
           }
 
           
         }
       });
-      myDataRef.on('child_added', function(snapshot) {
-        var message = snapshot.val();
-        displayChatMessage(message.name, message.text);
-      });
-      function displayChatMessage(name, text) {
-        $('<div/>').text(text).prepend($('<em/>').text(name+': ')).appendTo($('#messagesDiv'));
-        $('#messagesDiv')[0].scrollTop = $('#messagesDiv')[0].scrollHeight;
-      };
+myDataRef.child('channel/' + channel).on('child_added', function(snapshot) {
+  var message = snapshot.val();
+  displayChatMessage(message.name, message.text);
+});
+function displayChatMessage(name, text) {
+  $('<div/>').text(text).prepend($('<em/>').text(name+': ')).appendTo($('#messagesDiv'));
+  $('#messagesDiv')[0].scrollTop = $('#messagesDiv')[0].scrollHeight;
+};
 
-      function loginButton(){
-        console.log("loginButton pressed");
-        authModal.modal('show');
+function loginButton(){
+  console.log("loginButton pressed");
+  authModal.modal('show');
 
-      }
-      function login(provider){
-        console.log(provider);
-        authModal.modal('hide');
-        myDataRef.authWithOAuthPopup(provider, function(error, authData) {
-          if (error) {
-          console.log("Login Failed!", error);
-          } else {
-          console.log("Authenticated successfully with payload:", authData);
-            }
-        });
-       }
+}
+function login(provider){
+  console.log(provider);
+  authModal.modal('hide');
+  myDataRef.authWithOAuthPopup(provider, function(error, authData) {
+    if (error) {
+      console.log("Login Failed!", error);
+    } else {
+      console.log("Authenticated successfully with payload:", authData);
+    }
+  });
+}
 
-       function logout(){
-          console.log("logging Out")
-          myDataRef.unauth();
-          location.reload();
+function logout(){
+  console.log("logging Out")
+  myDataRef.unauth();
+  location.reload();
 
-       }
+}
 
-    </script>
-  </body>
+function buy(){
+  channel='buy';
+  console.log('buy button clicked');
+  $("#buy").toggleClass("active");
+  $("#sell").removeClass("active");
+  
+
+  // console.log()
+}
+
+function sell(){
+  channel='sell';  
+  $("#sell").toggleClass("active");
+  $("#buy").removeClass("active");
+
+}
+
+
+
+</script>
+</body>
 </html>
