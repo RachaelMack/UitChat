@@ -132,10 +132,12 @@ $('#messageInput').keypress(function (e) {
           
         }
       });
+
 myDataRef.child('channel/' + channel).on('child_added', function(snapshot) {
   var message = snapshot.val();
   displayChatMessage(message.name, message.text);
 });
+
 function displayChatMessage(name, text) {
   $('<div/>').text(text).prepend($('<em/>').text(name+': ')).appendTo($('#messagesDiv'));
   $('#messagesDiv')[0].scrollTop = $('#messagesDiv')[0].scrollHeight;
@@ -166,20 +168,33 @@ function logout(){
 }
 
 function buy(){
+  $("#messagesDiv").empty();
   channel='buy';
   console.log('buy button clicked');
   $("#buy").toggleClass("active");
   $("#sell").removeClass("active");
-  
 
-  // console.log()
+  myDataRef.child('channel').child('buy').on('child_added',function(snapshot){
+  var message=snapshot.val()
+  console.log("buy message")
+  displayChatMessage(message.name, message.text);
+
+}) 
 }
 
 function sell(){
-  channel='sell';  
+  $("#messagesDiv").empty();
+  channel='sell'; 
+  console.log('sell button clicked'); 
   $("#sell").toggleClass("active");
   $("#buy").removeClass("active");
 
+  myDataRef.child('channel').child('sell').on('child_added',function(snapshot){
+  var message=snapshot.val()
+  console.log("sell message")
+  displayChatMessage(message.name, message.text);
+
+}) 
 }
 
 
