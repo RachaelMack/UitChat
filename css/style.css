@@ -1,7 +1,7 @@
 
 .visit{
 	background-color: #c2eee2;
-	height: 400px;
+	height: 200px;
 	color: #72d8bb;
 	padding-top: 45px;
   text-align: center;
@@ -17,7 +17,7 @@
 
 }
 .messages{
-	height:390px;
+	height:200px;
 	padding-top: 5px;
 	padding-left: 20px;
 }

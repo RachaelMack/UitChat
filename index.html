@@ -21,15 +21,13 @@
 
   <!-- CSS -->
   <link rel='stylesheet' type='text/css' href='/css/style.css' >
-
-
   
   
 </head>
 <body>
   <div class= "container">
     <div class="row">
-      <img src="images/abundancelogo.png" alt="Abundance Logo" height="93" width="370" padding="10px">
+      <img src="images/abundancelogo.png" alt="Abundance Logo" height="93" width="330" padding="10px">
       <button type="button" class="btn btn-custom"><a href="javascript:logout();">Logout</a></button>
       <button type="button" class="btn btn-custom"><a href="javascript:loginButton();">Login</a></button>
 
@@ -55,7 +53,7 @@
     </div>
   </div>
   <div class="row bottom-social">
-    <div class="col-sm-2 social">
+    <div class="col-sm-3 social">
       <a href="http://twitter.com" target="_Blank"><i class="fa fa-twitter-square fa-3x"></i></a>
       <a href="http://www.yoututbe.com" target="_Blank"><i class="fa fa-youtube-square fa-3x"></i></a>
       <a href="http://www.facebook.com" target="_Blank"><i class="fa fa-facebook-square fa-3x"></i></a>
@@ -97,6 +95,7 @@
       </div><!-- /.modal -->
 
       <script>
+
       var channel ='buy';
       var myDataRef = new Firebase('https://abundance.firebaseio.com/');
       var name=""; 
@@ -196,6 +195,9 @@ function sell(){
 
 }) 
 }
+
+
+
 
 
 
