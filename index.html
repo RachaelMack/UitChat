@@ -135,11 +135,13 @@ $('#messageInput').keypress(function (e) {
 myDataRef.child('channel/' + channel).on('child_added', function(snapshot) {
   var message = snapshot.val();
   displayChatMessage(message.name, message.text);
+  console.log("is this running 3 times")
 });
 
 function displayChatMessage(name, text) {
   $('<div/>').text(text).prepend($('<em/>').text(name+': ')).appendTo($('#messagesDiv'));
   $('#messagesDiv')[0].scrollTop = $('#messagesDiv')[0].scrollHeight;
+  console.log("is this running 3 times")
 };
 
 function loginButton(){
@@ -167,6 +169,7 @@ function logout(){
 }
 
 function buy(){
+  location.reload();
   $("#messagesDiv").empty();
   channel='buy';
   console.log('buy button clicked');
@@ -177,6 +180,7 @@ function buy(){
   var message=snapshot.val()
   console.log("buy message")
   displayChatMessage(message.name, message.text);
+  console.log("is this running 3 times")
 
 }) 
 }
@@ -192,7 +196,7 @@ function sell(){
   var message=snapshot.val()
   console.log("sell message")
   displayChatMessage(message.name, message.text);
-
+  console.log("is this running 3 times")
 }) 
 }
 
