@@ -6,6 +6,7 @@
   <!-- JQUERY -->
   <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/spin.js/1.2.7/spin.min.js"></script>
 
   <!-- BOOTSTRAP -->
   <!-- Latest compiled and minified CSS -->
@@ -27,7 +28,7 @@
 <body>
   <div class= "container">
     <div class="row">
-      <img src="images/abundancelogo.png" alt="Abundance Logo" height="93" width="330" padding="10px">
+      <a href="index.html"><img src="images/abundancelogo.png" alt="Abundance Logo" height="93" width="330" padding="10px"></a>
       <button type="button" class="btn btn-custom"><a href="javascript:logout();">Logout</a></button>
       <button type="button" class="btn btn-custom"><a href="javascript:loginButton();">Login</a></button>
 
@@ -43,12 +44,17 @@
 
     <div class="col-sm-9 chat-main">
 
-      <input type='text' id='messageInput' class="inputBox" placeholder='Type Your Message Here'>
-
-      <div id='messagesDiv' class="messages">
+     
+      
+      <div id='messagesDiv' class="messages" style="overflow:scroll"> </div>
+     <!--  <div id="spin"></div> -->
+      <input type='text' id='messageInput' class="inputBox" placeholder='Type Your Message Here'> 
+      <input type="file" accept="image/*" capture="camera" id="file-upload">
+      <br/>
+      <img style="height:100px; width:100px;"class="pano" id="pano" />
 
         <div class="col-sm-1">
-        </div>
+           </div>
       </div>
     </div>
   </div>
@@ -200,7 +206,33 @@ function sell(){
 }) 
 }
 
+document.getElementById("file-upload").addEventListener('change', handleFileSelect, false);
 
+function handleFileSelect(shannon) {
+  var image = shannon.target.files[0];
+  console.log('the photo is :', image);
+  
+  var reader = new FileReader();
+  console.log('the reader is ', reader);
+
+  reader.onload = (function(theFile) {
+    console.log("we are in the onload function");
+    
+    return function(e){
+      console.log("we are in return function");
+      var filePayload = e.target.result;
+      var image = myDataRef.child('images').push({image: e.target.result});
+
+      document.getElementById("pano").src = filePayload;
+     
+    };
+  })(image);
+  reader.readAsDataURL(image);
+}
+
+
+// var str = ('#messageInput');
+// var formattedStr = string.replace ((www\.|(http|https|ftp|news|file)+\:\/\/)[&#95;.a-z0-9-]+\.[a-z0-9\/&#95;:@=.+?,##%&~-]*[^.|\'|\# |!|\(|?|,| |>|<|;|\)]), "<a href='$1>"
 
 
 
