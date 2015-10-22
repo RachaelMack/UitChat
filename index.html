@@ -49,9 +49,11 @@
       <div id='messagesDiv' class="messages" style="overflow:scroll"> </div>
      <!--  <div id="spin"></div> -->
       <input type='text' id='messageInput' class="inputBox" placeholder='Type Your Message Here'> 
-      <input type="file" accept="image/*" capture="camera" id="file-upload">
+      <input type="file" accept="image/*" capture="camera" id="file-upload" class="preview">
       <br/>
-      <img style="height:100px; width:100px;"class="pano" id="pano" />
+      <img style="width:200px;"class="pano" id="pano"/>
+
+      <button type="button" class="btn btn-submit" id="submit" ><a href="javascript:submit();">Submit</a></button>
 
         <div class="col-sm-1">
            </div>
@@ -120,7 +122,36 @@
 
 // Register the callback to be fired every time auth state changes
 
-myDataRef.onAuth(authDataCallback);
+document.getElementById("file-upload").addEventListener('change', handleFileSelect, false);
+
+function handleFileSelect(shannon) {
+  var f = shannon.target.files[0];
+  console.log('the photo is :', f);
+  
+  var reader = new FileReader();
+  console.log('the reader is ', reader);
+
+  reader.onload = (function(theFile) {
+    console.log("we are in the onload function");
+    
+    return function(e){
+      console.log("we are in return function");
+      var filePayload = e.target.result;
+      // var f = myDataRef.child('buy').push({image: e.target.result});
+
+      document.getElementById("pano").src = filePayload;
+     
+    };
+  })(f);
+  reader.readAsDataURL(f);
+}
+
+
+myDataRef.onAuth(authDataCallback); 
+
+function submit(){
+  console.log('in submit button')
+}
 
 
 $('#messageInput').keypress(function (e) {
@@ -129,8 +160,10 @@ $('#messageInput').keypress(function (e) {
       authModal.modal('show');
           } else { // Don't submit anything unlesswe know users name!
             // var name = $('#nameInput').val();
+            var image = document.getElementById("pano").src
+            console.log('the picture is ', image);
             var text = $('#messageInput').val();
-            myDataRef.child('channel/' + channel).push({name: name, text: text});
+            myDataRef.child('channel/' + channel).push({name: name, text: text, image: image});
             $('#messageInput').val('');
           }
 
@@ -140,12 +173,15 @@ $('#messageInput').keypress(function (e) {
 
 myDataRef.child('channel/' + channel).on('child_added', function(snapshot) {
   var message = snapshot.val();
-  displayChatMessage(message.name, message.text);
+  displayChatMessage(message.name, message.text, message.image);
   console.log("is this running 3 times")
 });
 
-function displayChatMessage(name, text) {
+function displayChatMessage(name, text, image) {
   $('<div/>').text(text).prepend($('<em/>').text(name+': ')).appendTo($('#messagesDiv'));
+  if (image !='' && image != undefined) {
+    $('<div/>').prepend("<img class='messagephoto' src='"+ image + "' />").appendTo($('#messagesDiv'));
+  }
   $('#messagesDiv')[0].scrollTop = $('#messagesDiv')[0].scrollHeight;
   console.log("is this running 3 times")
 };
@@ -185,7 +221,7 @@ function buy(){
   myDataRef.child('channel').child('buy').on('child_added',function(snapshot){
   var message=snapshot.val()
   console.log("buy message")
-  displayChatMessage(message.name, message.text);
+  displayChatMessage(message.name, message.text, message.image);
   console.log("is this running 3 times")
 
 }) 
@@ -201,33 +237,9 @@ function sell(){
   myDataRef.child('channel').child('sell').on('child_added',function(snapshot){
   var message=snapshot.val()
   console.log("sell message")
-  displayChatMessage(message.name, message.text);
+  displayChatMessage(message.name, message.text, message.image);
   console.log("is this running 3 times")
 }) 
-}
-
-document.getElementById("file-upload").addEventListener('change', handleFileSelect, false);
-
-function handleFileSelect(shannon) {
-  var image = shannon.target.files[0];
-  console.log('the photo is :', image);
-  
-  var reader = new FileReader();
-  console.log('the reader is ', reader);
-
-  reader.onload = (function(theFile) {
-    console.log("we are in the onload function");
-    
-    return function(e){
-      console.log("we are in return function");
-      var filePayload = e.target.result;
-      var image = myDataRef.child('images').push({image: e.target.result});
-
-      document.getElementById("pano").src = filePayload;
-     
-    };
-  })(image);
-  reader.readAsDataURL(image);
 }
 
 
