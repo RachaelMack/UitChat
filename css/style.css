@@ -59,7 +59,7 @@
   -webkit-font-smoothing: antialiased;
   float: left;
   margin-bottom: 10px;
-  margin-top: 10px;
+  margin-top: 5px;
 }
 
 
@@ -83,7 +83,6 @@
   .chat-main {
     background-color: #ffffff;
     margin-top: 30px;
-    border: black;
   }
 
 .messagephoto {
@@ -91,10 +90,19 @@
    margin: 7px;
 }
 
-.preview {
+.pano {
   display: none;
 }
 
-.pano {
-  display: none;
+.inputPic {
+  /*margin-top: 5px;*/
+  padding-top: 5px;
+}
+
+.btn-custom a {
+  color:navy;
+}
+
+.btn-submit a {
+  color:navy;
 }

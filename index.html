@@ -48,9 +48,10 @@
       
       <div id='messagesDiv' class="messages" style="overflow:scroll"> </div>
      <!--  <div id="spin"></div> -->
+     <br>
       <input type='text' id='messageInput' class="inputBox" placeholder='Type Your Message Here'> 
-      <input type="file" accept="image/*" capture="camera" id="file-upload" class="preview">
-      <br/>
+      <input type="file" accept="image/*" capture="camera" id="file-upload" class="inputPic">
+  
       <img style="width:200px;"class="pano" id="pano"/>
 
       <button type="button" class="btn btn-submit" id="submit" ><a href="javascript:submit();">Submit</a></button>
@@ -105,6 +106,7 @@
       <script>
 
       var channel ='buy';
+      var fileInput =$('#file-upload');
       var myDataRef = new Firebase('https://abundance.firebaseio.com/');
       var name=""; 
       var authModal= $('#auth-modal').modal({show: false }) ; //we don't want the modal to show immediately
@@ -140,6 +142,7 @@ function handleFileSelect(shannon) {
       // var f = myDataRef.child('buy').push({image: e.target.result});
 
       document.getElementById("pano").src = filePayload;
+
      
     };
   })(f);
@@ -149,14 +152,8 @@ function handleFileSelect(shannon) {
 
 myDataRef.onAuth(authDataCallback); 
 
-function submit(){
-  console.log('in submit button')
-}
-
-
-$('#messageInput').keypress(function (e) {
-  if (e.keyCode == 13) {
-    if(!name){
+function submit(e){
+  if(!name){
       authModal.modal('show');
           } else { // Don't submit anything unlesswe know users name!
             // var name = $('#nameInput').val();
@@ -166,10 +163,31 @@ $('#messageInput').keypress(function (e) {
             myDataRef.child('channel/' + channel).push({name: name, text: text, image: image});
             $('#messageInput').val('');
           }
-
+          fileInput.replaceWith( fileInput = fileInput.clone( true ));
+  
           
         }
-      });
+      ;
+  console.log('in submit button')
+
+
+
+// $('#messageInput').keypress(function (e) {
+//   if (e.keyCode == 13) {
+    // if(!name){
+    //   authModal.modal('show');
+    //       } else { // Don't submit anything unlesswe know users name!
+    //         // var name = $('#nameInput').val();
+    //         var image = document.getElementById("pano").src
+    //         console.log('the picture is ', image);
+    //         var text = $('#messageInput').val();
+    //         myDataRef.child('channel/' + channel).push({name: name, text: text, image: image});
+    //         $('#messageInput').val('');
+    //       }
+
+          
+    //     }
+    //   });
 
 myDataRef.child('channel/' + channel).on('child_added', function(snapshot) {
   var message = snapshot.val();
@@ -211,7 +229,7 @@ function logout(){
 }
 
 function buy(){
-  location.reload();
+  // location.reload();
   $("#messagesDiv").empty();
   channel='buy';
   console.log('buy button clicked');
