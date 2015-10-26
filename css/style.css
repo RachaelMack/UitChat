@@ -75,7 +75,7 @@ body {
 }
 
 .messages{
-	height:390px;
+	height:300px;
 	padding-top: 5px;
 	padding-left: 20px;
 
@@ -133,9 +133,10 @@ body {
 
   .bottom-social a {
     float: center;
-    padding: 50px 5px 40px 5px; /* one value adds same amount of padding on all sides */
+    padding: 20px 5px 10px 5px; /* one value adds same amount of padding on all sides */
     display: inline-block;
     color: white;
+    margin-bottom: 10px;
 
   }
 
@@ -146,7 +147,8 @@ body {
     padding-top: 10px;
   }
 
-  .chat-main a {background: #466584;
+  .chat-main a {
+  background: #466584;
   padding:10px;
   display: inline-block;
   text-transform: uppercase; /* changes letters to uppercase */
