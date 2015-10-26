@@ -27,48 +27,47 @@
 </head>
 <body>
   <div class= "container">
-    <div class="row">
-      <a href="index.html"><img src="images/abundancelogo.png" alt="Abundance Logo" height="93" width="330" padding="10px"></a>
-      <button type="button" class="btn btn-custom"><a href="javascript:logout();">Logout</a></button>
-      <button type="button" class="btn btn-custom"><a href="javascript:loginButton();">Login</a></button>
-
-    </div>
-    <div class="row main-container">
-     <div class="col-sm-2 visit">  
-
-      <ul class="nav nav-pills nav-stacked">
-        <li id= "buy" role="buy" class="active"><a href="javascript:buy();">Meats and Produce</a></li>
-        <li id= "sell" role="sell" class="inactive"><a href="javascript:sell();">Preserves and Sauces</a></li>
-      </ul>
-    </div>
-
-    <div class="col-sm-9 chat-main">
-
-     
+    <div class="row head">
+       <div class="col-sm-6 logo">
+      <a href="index.html"><img src="images/bluelogo.png" alt="Abundance Logo" height="150" width="460" padding="10px"></a></div>
+  <div class="col-sm-6 log">
+      <a href="javascript:loginButton();">Login</a>
+      <a href="javascript:logout();">Logout</a>
       
+ 
+  </div>
+    </div>
+    
+    <div class="row main-container">
+      <div class=row pills>
+        <div class="col-sm-12 channels">
+      <a href="javascript:buy();" id="buy" role="buy" class="active">Meats and Produce</a>
+      <a href="javascript:sell();" id="sell" role="sell" class="inactive">Preserves and Sauces</a>
+    </div>
+  </div>
+  <div class=row chat>
+    <div class="col-sm-12 chat-main">
+
       <div id='messagesDiv' class="messages" style="overflow:scroll"> </div>
-     <!--  <div id="spin"></div> -->
      <br>
-      <input type='text' id='messageInput' class="inputBox" placeholder='Type Your Message Here'> 
       <input type="file" accept="image/*" capture="camera" id="file-upload" class="inputPic">
   
       <img style="width:200px;"class="pano" id="pano"/>
-
-      <button type="button" class="btn btn-submit" id="submit" ><a href="javascript:submit();">Submit</a></button>
-
-        <div class="col-sm-1">
-           </div>
-      </div>
+      <input type='text' id='messageInput' class="inputBox" placeholder='Type Your Message Here'> 
+      
+      <a href="javascript:submit();">Submit</a>
     </div>
   </div>
+
   <div class="row bottom-social">
-    <div class="col-sm-3 social">
-      <a href="http://twitter.com" target="_Blank"><i class="fa fa-twitter-square fa-3x"></i></a>
-      <a href="http://www.yoututbe.com" target="_Blank"><i class="fa fa-youtube-square fa-3x"></i></a>
-      <a href="http://www.facebook.com" target="_Blank"><i class="fa fa-facebook-square fa-3x"></i></a>
+    <!-- <div class="col-sm-3 social"> -->
+      <center><a href="http://twitter.com" target="_Blank"><i class="fa fa-twitter-square fa-5x"></i></a>
+      <a href="http://www.yoututbe.com" target="_Blank"><i class="fa fa-youtube-square fa-5x"></i></a>
+      <a href="http://www.facebook.com" target="_Blank"><i class="fa fa-facebook-square fa-5x"></i></a></center>
 
     </div>
   </div>
+</div>
 
   <div class="modal fade" id="auth-modal">
     <div class="modal-dialog">
@@ -168,6 +167,10 @@ function submit(e){
     document.getElementById("file-upload").addEventListener('change', handleFileSelect, false);
     //document.getElementById("pano").src = "#";
     $("#pano").removeAttr('src');
+
+    var aSound = document.createElement('audio');
+     aSound.setAttribute('src', 'elements/notification.mp3');
+     aSound.play();
   }
           
 }
@@ -193,6 +196,7 @@ myDataRef.child('channel/' + channel).on('child_added', function(snapshot) {
   var message = snapshot.val();
   displayChatMessage(message.name, message.text, message.image);
   console.log("is this running 3 times")
+
  // var aSound = document.createElement('audio');
  //     aSound.setAttribute('src', 'elements/notification.mp3');
  //     aSound.play();
